@@ -1,0 +1,363 @@
+<!doctype html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Daily News",
+  "schemaVersion": 1,
+  "description": "James's personalized daily news brief: Houston/Dallas weather, an executive summary, and 4-5 stories each across World, U.S. Business & Markets, and Construction & Housing. Refreshed every morning at 6 a.m. CT by a scheduled task and on-demand via the Reload button.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James's Daily Brief</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#b8860b">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Daily Brief">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #fbfaf7;
+  --paper: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #3a3a3a;
+  --ink-3: #6b6b6b;        /* WCAG AA on --bg */
+  --rule: #e8e3d8;
+  --rule-2: #f0ece2;
+  --accent: #b8860b;
+  --accent-soft: #fdf4d8;
+  --accent-ink: #6b4f1a;
+  --accent-deep: #8a6914;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Text", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse at top left, #fbf7ec 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, #f7f3e9 0%, transparent 55%),
+    var(--bg);
+  min-height: 100vh;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 22px 18px 80px; }
+
+/* ── Masthead ───────────────────────── */
+.masthead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 8px;
+  flex-wrap: wrap; gap: 6px;
+}
+.masthead h1 {
+  font: 700 30px/1.05 "Iowan Old Style", "Charter", "Georgia", serif;
+  letter-spacing: -0.012em; margin: 0;
+}
+.masthead .date {
+  font-size: 13px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.meta {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+  font-size: 12px; color: var(--ink-3); margin: 0 0 18px;
+}
+.meta .dot { color: var(--accent); }
+
+/* ── Section nav ────────────────────── */
+.section-nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; gap: 6px; overflow-x: auto;
+  padding: 8px 18px;
+  margin: 0 -18px 22px;
+  background: rgba(251, 250, 247, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  scrollbar-width: none;
+}
+.section-nav::-webkit-scrollbar { display: none; }
+.section-nav a {
+  flex-shrink: 0;
+  font: 600 11px/1 -apple-system, sans-serif;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3); text-decoration: none;
+  padding: 7px 11px; border: 1px solid var(--rule);
+  border-radius: 999px; background: var(--paper);
+  white-space: nowrap; transition: color .15s, border-color .15s;
+}
+.section-nav a:hover, .section-nav a:focus-visible {
+  color: var(--ink); border-color: var(--ink); outline: none;
+}
+
+/* ── Weather ────────────────────────── */
+.weather {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 22px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+.wx-card .city { font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em; }
+.wx-card .temp {
+  font: 700 32px/1 "Iowan Old Style", "Charter", "Georgia", serif;
+  margin-top: 4px; letter-spacing: -0.02em;
+}
+.wx-card .cond { font-size: 14px; color: var(--ink-2); margin-top: 3px; }
+
+/* ── The Brief callout ──────────────── */
+.summary {
+  background: var(--accent-soft); border-left: 4px solid var(--accent);
+  padding: 14px 16px; border-radius: 0 8px 8px 0;
+  margin-bottom: 30px; font-size: 15px; line-height: 1.65;
+  color: var(--ink-2);
+}
+.summary h2 {
+  margin: 0 0 8px; font: 700 13px/1 -apple-system, sans-serif;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep);
+}
+
+/* ── Sections ───────────────────────── */
+section.topic { margin-bottom: 32px; scroll-margin-top: 64px; }
+section.topic h2 {
+  font: 700 14px/1 -apple-system, sans-serif;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+  margin: 0 0 14px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; gap: 8px;
+}
+section.topic h2::before {
+  content: ""; display: inline-block;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+}
+section.topic + section.topic::before {
+  content: "❦";
+  display: block; text-align: center;
+  color: var(--accent); font-size: 18px;
+  margin: -10px 0 22px; opacity: 0.45;
+}
+
+/* ── Stories ────────────────────────── */
+.story {
+  position: relative;
+  padding: 14px 0; border-bottom: 1px solid var(--rule-2);
+  transition: background .15s;
+}
+.story:last-child { border-bottom: none; }
+.story:hover { background: rgba(255,255,255,0.5); }
+.story h3 {
+  font: 600 17px/1.3 "Iowan Old Style", "Charter", "Georgia", serif;
+  margin: 0 0 4px; letter-spacing: -0.005em;
+}
+.story h3 a {
+  color: var(--ink); text-decoration: none;
+}
+.story h3 a::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+}
+.story h3 a:hover { color: var(--accent-deep); }
+.story p {
+  margin: 5px 0 0; font-size: 14.5px; color: var(--ink-2); line-height: 1.5;
+  position: relative; z-index: 0;
+}
+.story .src {
+  display: inline-block; margin-top: 7px; font-size: 11px;
+  color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em;
+  position: relative; z-index: 0;
+}
+
+/* Lede: first story in a section gets newspaper top-of-fold treatment */
+.story:first-of-type {
+  padding-top: 4px;
+}
+.story:first-of-type h3 {
+  font-size: 22px; line-height: 1.22;
+}
+.story:first-of-type h3::before {
+  content: "Top story";
+  display: block;
+  font: 700 10px/1 -apple-system, sans-serif;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 5px;
+}
+.story:first-of-type p {
+  font-size: 15px;
+}
+
+/* Inline tag pill */
+.tag {
+  display: inline-block; font-size: 10px; padding: 2px 7px;
+  background: var(--ink); color: var(--bg); border-radius: 3px;
+  letter-spacing: 0.1em; text-transform: uppercase; vertical-align: middle;
+  margin-left: 6px; font-weight: 700;
+}
+
+/* ── Footer ─────────────────────────── */
+.footer {
+  margin-top: 44px; padding-top: 14px; border-top: 1px solid var(--rule);
+  font-size: 12px; color: var(--ink-3); text-align: center; line-height: 1.6;
+}
+
+/* ── Phone ──────────────────────────── */
+@media (max-width: 480px) {
+  .wrap { padding: 18px 16px 80px; }
+  .weather { grid-template-columns: 1fr; }
+  .masthead h1 { font-size: 26px; }
+  .story:first-of-type h3 { font-size: 20px; }
+  .section-nav { margin: 0 -16px 18px; padding: 8px 16px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <h1>James's Daily Brief</h1>
+    <div class="date" id="dateline">Thursday, May 7, 2026</div>
+  </header>
+
+  <div class="meta">
+    <span>~3 min read</span>
+    <span class="dot" aria-hidden="true">●</span>
+    <span>Refreshed <time id="refreshed-at" datetime="2026-05-07T06:01-05:00">6:01 a.m. CT</time></span>
+  </div>
+
+  <nav class="section-nav" aria-label="Sections">
+    <a href="#weather">Weather</a>
+    <a href="#brief">The Brief</a>
+    <a href="#world">World</a>
+    <a href="#markets">Markets</a>
+    <a href="#construction">Construction</a>
+  </nav>
+
+  <div id="weather" class="weather">
+    <div class="wx-card">
+      <div class="city">Houston</div>
+      <div class="temp">77&deg;</div>
+      <div class="cond">Mostly cloudy &middot; North wind 5&ndash;10 mph, low 69&deg; tonight</div>
+    </div>
+    <div class="wx-card">
+      <div class="city">Dallas</div>
+      <div class="temp">68&deg;</div>
+      <div class="cond">Mostly cloudy &middot; 20% PM shower chance, low 56&deg; tonight</div>
+    </div>
+  </div>
+
+  <div id="brief" class="summary">
+    <h2>The Brief</h2>
+    Wall Street is sitting on a clean sweep of record closes after the Dow added 612 points to 49,910, the S&amp;P 500 jumped 1.46% to 7,365.12, and the Nasdaq surged 2.02% to 25,838.94 on a report the U.S. and Iran are nearing a one-page framework to end the war. Futures are modestly higher this morning as traders wait on Tehran's reply and the prospect of talks restarting in Islamabad next week. In construction, lumber futures held near $564/MBF &mdash; a seven-week low &mdash; even as Q2 cash framing prices have spiked 5.11% and an effective ~36% Canadian softwood duty looms in August. Texas: a mild 77&deg; in Houston ahead of a wet weekend, and an unusually cool 68&deg; high in Dallas before warming back to the mid-70s tomorrow.
+  </div>
+
+  <section id="world" class="topic">
+    <h2>World &amp; General</h2>
+
+    <article class="story">
+      <h3><a href="https://www.cnn.com/2026/05/06/world/live-news/iran-war-trump-strait-of-hormuz" target="_blank" rel="noopener">Iran set to deliver reply on U.S. war-ending framework today</a></h3>
+      <p>Tehran is expected to hand mediators its formal response to a one-page U.S. proposal aimed at ending the war and reopening the Strait of Hormuz, with talks tentatively slated to resume next week in Islamabad. President Trump said the past 24 hours of contact have been &ldquo;very good.&rdquo;</p>
+      <span class="src">CNN</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.npr.org/sections/world/" target="_blank" rel="noopener">Zelenskyy slams Russia's &ldquo;utter cynicism&rdquo; ahead of unilateral truce</a></h3>
+      <p>Ukraine's president denounced fresh Russian strikes launched just days before Moscow's announced ceasefire window, calling the timing proof Moscow is negotiating in bad faith.</p>
+      <span class="src">NPR</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.aljazeera.com/news/" target="_blank" rel="noopener">Cruise ship stranded off Cape Verde amid hantavirus deaths</a></h3>
+      <p>A vessel carrying close to 150 passengers is holding offshore after three deaths linked to a suspected rodent-borne hantavirus outbreak. Health teams are coordinating evacuation and quarantine logistics with regional authorities.</p>
+      <span class="src">Al Jazeera</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://ajp.com.au/news/world-news/world-news-wrapup-7-may-2026/" target="_blank" rel="noopener">Australia repatriates four women, nine children from Syria camp</a></h3>
+      <p>Canberra confirmed the group, with alleged ties to Islamic State detainees, has booked flights from Damascus as part of a long-running repatriation effort from a camp in northeast Syria.</p>
+      <span class="src">AJP</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://abcnews.com/international" target="_blank" rel="noopener">PSG advances to Champions League final after 1&ndash;1 draw at Bayern</a></h3>
+      <p>Paris Saint-Germain held Bayern Munich in Germany to take the semifinal 6&ndash;4 on aggregate, booking a return trip to the European final and another payday for its star-studded front line.</p>
+      <span class="src">ABC News</span>
+    </article>
+  </section>
+
+  <section id="markets" class="topic">
+    <h2>U.S. Business &amp; Markets</h2>
+
+    <article class="story">
+      <h3><a href="https://www.cnbc.com/2026/05/06/stock-market-today-live-updates.html" target="_blank" rel="noopener">Dow, S&amp;P, Nasdaq close at record highs on Iran-deal optimism <span class="tag">Records</span></a></h3>
+      <p>The Dow added 612.34 points (+1.24%) to 49,910.59, the S&amp;P 500 advanced 1.46% to 7,365.12, and the Nasdaq Composite jumped 2.02% to 25,838.94 &mdash; a clean sweep of record closes as markets priced in a possible end to the Iran war.</p>
+      <span class="src">CNBC</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.thestreet.com/latest-news/stock-market-today-may-7-2026-updates" target="_blank" rel="noopener">Futures inch higher as Wall Street awaits Iran's formal reply</a></h3>
+      <p>S&amp;P 500 futures rose 0.16% and Nasdaq 100 futures added 0.19%, while Dow futures gained roughly 120 points (+0.24%) ahead of the open. Traders are positioned for upside if Tehran's response keeps the framework on track.</p>
+      <span class="src">TheStreet</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://sundayguardianlive.com/business/us-stock-market-today-07-may-2026-dow-rises-nasdaq-sp-500-edge-higher-as-oil-surges-110-on-us-iran-tensions-gold-silver-climb-bitcoin-retreats-82k-what-investors-should-watch-189726/" target="_blank" rel="noopener">Bitcoin slips to ~$82K as risk-on rotation drains crypto bid</a></h3>
+      <p>Spot bitcoin pulled back roughly to $82,000 as flows rotated into equities and precious metals; gold and silver firmed alongside the broader risk-on tone.</p>
+      <span class="src">Sunday Guardian</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.cnbc.com/2026/05/05/stock-market-today-live-updates.html" target="_blank" rel="noopener">AMD pops ~19%, lifting the chip complex on AI demand signals</a></h3>
+      <p>Advanced Micro Devices' results and guidance reinforced the AI-spending thesis, dragging the semiconductor sector higher and underwriting Nasdaq leadership in this leg of the rally.</p>
+      <span class="src">CNBC</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://tradingeconomics.com/united-states/stock-market" target="_blank" rel="noopener">S&amp;P 500 stretches record run as oil price relief sticks</a></h3>
+      <p>The benchmark extended its streak of all-time highs, helped by Brent's slide back toward the $90s and resilient earnings. Valuations remain stretched heading into next week's CPI print.</p>
+      <span class="src">Trading Economics</span>
+    </article>
+  </section>
+
+  <section id="construction" class="topic">
+    <h2>Construction &amp; Housing</h2>
+
+    <article class="story">
+      <h3><a href="https://tradingeconomics.com/commodity/lumber" target="_blank" rel="noopener">Lumber futures hold $564/MBF &mdash; seven-week low <span class="tag">Lumber</span></a></h3>
+      <p>Trade-policy uncertainty and softer near-term demand kept futures pinned at their lowest level since mid-March. Cash framing lumber, however, has spiked 5.11% in Q2 and is up 4.21% year-over-year.</p>
+      <span class="src">Trading Economics</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.trioforest.com/what-will-shape-the-lumber-market-in-2026-trends-risks-opportunities/" target="_blank" rel="noopener">Canadian softwood duties to land near 36% effective in August</a></h3>
+      <p>Preliminary U.S. antidumping duties were trimmed to 10.7% (from 20.6%) and countervailing to 14.2% (from 14.6%). Layered on the existing 10% Section 232 tariff, the total effective rate sits at roughly 35.9%.</p>
+      <span class="src">Trio Forest</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://finance.yahoo.com/news/where-lumber-prices-heading-2026-150002694.html" target="_blank" rel="noopener">2026 housing starts forecast: 1.5M units, +8&ndash;9% over 2025</a></h3>
+      <p>Lower rates and the persistent housing shortage are nudging single-family starts higher and lifting expected lumber demand 4&ndash;8% annually, even as multifamily continues to do the heavier lifting in the mix.</p>
+      <span class="src">Yahoo Finance</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.nahb.org/blog/2026/01/building-material-price-growth" target="_blank" rel="noopener">NAHB: building-material price growth still elevated in a sluggish market</a></h3>
+      <p>Builders continue to absorb above-trend input cost increases even as activity cools, squeezing margins on the next wave of starts. Tariff exposure keeps Canadian-sourced inputs front-of-mind.</p>
+      <span class="src">NAHB</span>
+    </article>
+
+    <article class="story">
+      <h3><a href="https://www.lumbercapital.com/post/lumber-prices-in-2026-what-builders-and-homeowners-need-to-know-now" target="_blank" rel="noopener">Sawmill capacity stays tight, capping the supply response</a></h3>
+      <p>U.S. sawmill utilization has trended lower since 2017, leaving little room to absorb tariff-driven demand shifts. Builders should plan for continued upward price pressure into Q3.</p>
+      <span class="src">Lumber Capital</span>
+    </article>
+  </section>
+
+  <div class="footer">
+    Refreshed automatically each morning at 6:00 a.m. CT.<br>
+    Tap the Reload button in the header for an on-demand update.
+  </div>
+
+</div>
+</body>
+</html>
