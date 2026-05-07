@@ -1,0 +1,40 @@
+name: Refresh Daily Brief
+
+on:
+  schedule:
+    # 10:00 UTC = 5 a.m. CDT (4 a.m. CST in winter). GitHub may delay 5-15 min on busy hours.
+    - cron: '0 10 * * *'
+  workflow_dispatch: {}  # also lets you trigger manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Regenerate index.html
+        run: python build.py
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Daily refresh $(TZ=America/Chicago date +%Y-%m-%d)"
+          git push
