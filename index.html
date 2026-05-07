@@ -1,5 +1,6 @@
-<!doctype html>
-<script type="application/json" id="cowork-artifact-meta">
+<!DOCTYPE html>
+
+<script id="cowork-artifact-meta" type="application/json">
 {
   "name": "Daily News",
   "schemaVersion": 1,
@@ -10,16 +11,16 @@
 </script>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>James's Daily Brief</title>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#b8860b">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Daily Brief">
+<link href="manifest.webmanifest" rel="manifest"/>
+<meta content="#b8860b" name="theme-color"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="default" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="Daily Brief" name="apple-mobile-web-app-title"/>
 <style>
 :root {
   color-scheme: light;
@@ -213,151 +214,52 @@ section.topic + section.topic::before {
 </head>
 <body>
 <div class="wrap">
+<header class="masthead">
+<h1>James's Daily Brief</h1>
+<div class="date" id="dateline">Thursday, May 7, 2026</div>
+</header>
+<div class="meta">
+<span>~3 min read</span>
+<span aria-hidden="true" class="dot">●</span>
+<span>Refreshed <time datetime="2026-05-07T06:31-05:00" id="refreshed-at">6:31 a.m. CT</time></span>
+</div>
+<nav aria-label="Sections" class="section-nav">
+<a href="#weather">Weather</a>
+<a href="#brief">The Brief</a>
+<a href="#world">World</a>
+<a href="#markets">Markets</a>
+<a href="#construction">Construction</a>
+</nav>
+<div class="weather" id="weather"><div class="wx-card"><div class="city">Houston</div><div class="temp">77°</div><div class="cond">Mostly Cloudy</div></div><div class="wx-card"><div class="city">Dallas</div><div class="temp">76°</div><div class="cond">Partly Sunny</div></div></div>
+<div class="summary" id="brief"><h2>The Brief</h2>Markets: This aluminum producer is on fire. Why Wells Fargo sees the stock rising even more. World: Iran reviews U.S. proposal. And, Rubio to meet Pope Leo after Trump's criticism. Construction: Construction Safety Week signs new OSHA alliance at DC event. Texas today: Houston 77°F, Dallas 76°F.</div>
+<section class="topic" id="world">
+<h2>World &amp; General</h2>
 
-  <header class="masthead">
-    <h1>James's Daily Brief</h1>
-    <div class="date" id="dateline">Thursday, May 7, 2026</div>
-  </header>
 
-  <div class="meta">
-    <span>~3 min read</span>
-    <span class="dot" aria-hidden="true">●</span>
-    <span>Refreshed <time id="refreshed-at" datetime="2026-05-07T06:01-05:00">6:01 a.m. CT</time></span>
-  </div>
 
-  <nav class="section-nav" aria-label="Sections">
-    <a href="#weather">Weather</a>
-    <a href="#brief">The Brief</a>
-    <a href="#world">World</a>
-    <a href="#markets">Markets</a>
-    <a href="#construction">Construction</a>
-  </nav>
 
-  <div id="weather" class="weather">
-    <div class="wx-card">
-      <div class="city">Houston</div>
-      <div class="temp">77&deg;</div>
-      <div class="cond">Mostly cloudy &middot; North wind 5&ndash;10 mph, low 69&deg; tonight</div>
-    </div>
-    <div class="wx-card">
-      <div class="city">Dallas</div>
-      <div class="temp">68&deg;</div>
-      <div class="cond">Mostly cloudy &middot; 20% PM shower chance, low 56&deg; tonight</div>
-    </div>
-  </div>
 
-  <div id="brief" class="summary">
-    <h2>The Brief</h2>
-    Wall Street is sitting on a clean sweep of record closes after the Dow added 612 points to 49,910, the S&amp;P 500 jumped 1.46% to 7,365.12, and the Nasdaq surged 2.02% to 25,838.94 on a report the U.S. and Iran are nearing a one-page framework to end the war. Futures are modestly higher this morning as traders wait on Tehran's reply and the prospect of talks restarting in Islamabad next week. In construction, lumber futures held near $564/MBF &mdash; a seven-week low &mdash; even as Q2 cash framing prices have spiked 5.11% and an effective ~36% Canadian softwood duty looms in August. Texas: a mild 77&deg; in Houston ahead of a wet weekend, and an unusually cool 68&deg; high in Dallas before warming back to the mid-70s tomorrow.
-  </div>
+<article class="story"><h3><a href="https://www.npr.org/2026/05/07/g-s1-120673/up-first-newsletter-iran-trump-oil-production-pope-leo-marco-rubio-prediction-markets" rel="noopener" target="_blank">Iran reviews U.S. proposal. And, Rubio to meet Pope Leo after Trump's criticism</a></h3><p>Iran is reviewing the Trump administration's latest proposal to end the war. And, Secretary of State Marco Rubio is meeting Pope Leo XIV amid President Trump's harsh criticism of him.</p><span class="src">NPR</span></article><article class="story"><h3><a href="https://www.npr.org/2026/05/07/g-s1-118218/indonesia-nickel-mineral-mining" rel="noopener" target="_blank">Dirty nickel: The cost of mining in Indonesia</a></h3><p>Across six locations in Indonesia, NPR spoke with locals about how nickel mining is changing the land and daily life. It's brought jobs, but also concerns about environmental damage and public health.</p><span class="src">NPR</span></article><article class="story"><h3><a href="https://www.npr.org/2026/05/07/nx-s1-5814632/passengers-left-ship-hantavirus-st-helena" rel="noopener" target="_blank">About 40 passengers previously left ship hit by Hantavirus at island of St. Helena</a></h3><p>The dozens of passengers, including the wife of a Dutch man who died, left the cruise ship during a stop at the British territory, the Dutch foreign ministry said on Thursday.</p><span class="src">NPR</span></article><article class="story"><h3><a href="https://www.bbc.com/news/articles/c5y093d5n9ko?at_medium=RSS&amp;at_campaign=rss" rel="noopener" target="_blank">Hantavirus-hit cruise ship on way to Canary Islands after three evacuated</a></h3><p>A British man is among three evacuees sent to the Netherlands after displaying symptoms while aboard the MV Hondius.</p><span class="src">BBC World</span></article><article class="story"><h3><a href="https://www.bbc.com/news/articles/cj0pq2q8221o?at_medium=RSS&amp;at_campaign=rss" rel="noopener" target="_blank">Iran considering US proposal as Trump says war will be 'over quickly'</a></h3><p>Mediator Pakistan says it is "endeavouring to convert this ceasefire into a permanent end to this war".</p><span class="src">BBC World</span></article></section>
+<section class="topic" id="markets">
+<h2>U.S. Business &amp; Markets</h2>
 
-  <section id="world" class="topic">
-    <h2>World &amp; General</h2>
 
-    <article class="story">
-      <h3><a href="https://www.cnn.com/2026/05/06/world/live-news/iran-war-trump-strait-of-hormuz" target="_blank" rel="noopener">Iran set to deliver reply on U.S. war-ending framework today</a></h3>
-      <p>Tehran is expected to hand mediators its formal response to a one-page U.S. proposal aimed at ending the war and reopening the Strait of Hormuz, with talks tentatively slated to resume next week in Islamabad. President Trump said the past 24 hours of contact have been &ldquo;very good.&rdquo;</p>
-      <span class="src">CNN</span>
-    </article>
 
-    <article class="story">
-      <h3><a href="https://www.npr.org/sections/world/" target="_blank" rel="noopener">Zelenskyy slams Russia's &ldquo;utter cynicism&rdquo; ahead of unilateral truce</a></h3>
-      <p>Ukraine's president denounced fresh Russian strikes launched just days before Moscow's announced ceasefire window, calling the timing proof Moscow is negotiating in bad faith.</p>
-      <span class="src">NPR</span>
-    </article>
 
-    <article class="story">
-      <h3><a href="https://www.aljazeera.com/news/" target="_blank" rel="noopener">Cruise ship stranded off Cape Verde amid hantavirus deaths</a></h3>
-      <p>A vessel carrying close to 150 passengers is holding offshore after three deaths linked to a suspected rodent-borne hantavirus outbreak. Health teams are coordinating evacuation and quarantine logistics with regional authorities.</p>
-      <span class="src">Al Jazeera</span>
-    </article>
 
-    <article class="story">
-      <h3><a href="https://ajp.com.au/news/world-news/world-news-wrapup-7-may-2026/" target="_blank" rel="noopener">Australia repatriates four women, nine children from Syria camp</a></h3>
-      <p>Canberra confirmed the group, with alleged ties to Islamic State detainees, has booked flights from Damascus as part of a long-running repatriation effort from a camp in northeast Syria.</p>
-      <span class="src">AJP</span>
-    </article>
+<article class="story"><h3><a href="https://www.cnbc.com/2026/05/07/this-aluminum-producer-is-on-fire-why-wells-fargo-sees-the-stock-rising-even-more.html" rel="noopener" target="_blank">This aluminum producer is on fire. Why Wells Fargo sees the stock rising even more</a></h3><p>Analyst Timna Tanners upgraded the aluminum miner and smelter to overweight from equal weight.</p><span class="src">CNBC Markets</span></article><article class="story"><h3><a href="https://www.cnbc.com/2026/05/07/this-oil-tanker-stock-has-outperformed-bank-of-america-sees-more-gains.html" rel="noopener" target="_blank">This oil tanker stock has outperformed. Bank of America sees more gains, even if U.S.-Iran war ends</a></h3><p>The bank upgraded the oil transport name to buy from underperform.</p><span class="src">CNBC Markets</span></article><article class="story"><h3><a href="https://www.cnbc.com/2026/05/06/thursdays-big-stock-stories-whats-likely-to-move-the-market.html" rel="noopener" target="_blank">Thursday's big stock stories: What’s likely to move the market in the next trading session</a></h3><p>The S&amp;amp;P 500 hit a new all-time high and closed above 7,300 for the first time in Wednesday's session as traders grew optimistic about a deal in Iran.</p><span class="src">CNBC Markets</span></article><article class="story"><h3><a href="https://finance.yahoo.com/markets/crypto/articles/coinbase-ceo-makes-critical-move-052101559.html" rel="noopener" target="_blank">Coinbase CEO makes critical move before earnings</a></h3><p>(See full article.)</p><span class="src">Yahoo Finance</span></article><article class="story"><h3><a href="https://finance.yahoo.com/personal-finance/banking/article/best-hedges-against-inflation-231136070.html" rel="noopener" target="_blank">Best hedges against inflation: 6 ways to protect your purchasing power</a></h3><p>(See full article.)</p><span class="src">Yahoo Finance</span></article></section>
+<section class="topic" id="construction">
+<h2>Construction &amp; Housing</h2>
 
-    <article class="story">
-      <h3><a href="https://abcnews.com/international" target="_blank" rel="noopener">PSG advances to Champions League final after 1&ndash;1 draw at Bayern</a></h3>
-      <p>Paris Saint-Germain held Bayern Munich in Germany to take the semifinal 6&ndash;4 on aggregate, booking a return trip to the European final and another payday for its star-studded front line.</p>
-      <span class="src">ABC News</span>
-    </article>
-  </section>
 
-  <section id="markets" class="topic">
-    <h2>U.S. Business &amp; Markets</h2>
 
-    <article class="story">
-      <h3><a href="https://www.cnbc.com/2026/05/06/stock-market-today-live-updates.html" target="_blank" rel="noopener">Dow, S&amp;P, Nasdaq close at record highs on Iran-deal optimism <span class="tag">Records</span></a></h3>
-      <p>The Dow added 612.34 points (+1.24%) to 49,910.59, the S&amp;P 500 advanced 1.46% to 7,365.12, and the Nasdaq Composite jumped 2.02% to 25,838.94 &mdash; a clean sweep of record closes as markets priced in a possible end to the Iran war.</p>
-      <span class="src">CNBC</span>
-    </article>
 
-    <article class="story">
-      <h3><a href="https://www.thestreet.com/latest-news/stock-market-today-may-7-2026-updates" target="_blank" rel="noopener">Futures inch higher as Wall Street awaits Iran's formal reply</a></h3>
-      <p>S&amp;P 500 futures rose 0.16% and Nasdaq 100 futures added 0.19%, while Dow futures gained roughly 120 points (+0.24%) ahead of the open. Traders are positioned for upside if Tehran's response keeps the framework on track.</p>
-      <span class="src">TheStreet</span>
-    </article>
 
-    <article class="story">
-      <h3><a href="https://sundayguardianlive.com/business/us-stock-market-today-07-may-2026-dow-rises-nasdaq-sp-500-edge-higher-as-oil-surges-110-on-us-iran-tensions-gold-silver-climb-bitcoin-retreats-82k-what-investors-should-watch-189726/" target="_blank" rel="noopener">Bitcoin slips to ~$82K as risk-on rotation drains crypto bid</a></h3>
-      <p>Spot bitcoin pulled back roughly to $82,000 as flows rotated into equities and precious metals; gold and silver firmed alongside the broader risk-on tone.</p>
-      <span class="src">Sunday Guardian</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://www.cnbc.com/2026/05/05/stock-market-today-live-updates.html" target="_blank" rel="noopener">AMD pops ~19%, lifting the chip complex on AI demand signals</a></h3>
-      <p>Advanced Micro Devices' results and guidance reinforced the AI-spending thesis, dragging the semiconductor sector higher and underwriting Nasdaq leadership in this leg of the rally.</p>
-      <span class="src">CNBC</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://tradingeconomics.com/united-states/stock-market" target="_blank" rel="noopener">S&amp;P 500 stretches record run as oil price relief sticks</a></h3>
-      <p>The benchmark extended its streak of all-time highs, helped by Brent's slide back toward the $90s and resilient earnings. Valuations remain stretched heading into next week's CPI print.</p>
-      <span class="src">Trading Economics</span>
-    </article>
-  </section>
-
-  <section id="construction" class="topic">
-    <h2>Construction &amp; Housing</h2>
-
-    <article class="story">
-      <h3><a href="https://tradingeconomics.com/commodity/lumber" target="_blank" rel="noopener">Lumber futures hold $564/MBF &mdash; seven-week low <span class="tag">Lumber</span></a></h3>
-      <p>Trade-policy uncertainty and softer near-term demand kept futures pinned at their lowest level since mid-March. Cash framing lumber, however, has spiked 5.11% in Q2 and is up 4.21% year-over-year.</p>
-      <span class="src">Trading Economics</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://www.trioforest.com/what-will-shape-the-lumber-market-in-2026-trends-risks-opportunities/" target="_blank" rel="noopener">Canadian softwood duties to land near 36% effective in August</a></h3>
-      <p>Preliminary U.S. antidumping duties were trimmed to 10.7% (from 20.6%) and countervailing to 14.2% (from 14.6%). Layered on the existing 10% Section 232 tariff, the total effective rate sits at roughly 35.9%.</p>
-      <span class="src">Trio Forest</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://finance.yahoo.com/news/where-lumber-prices-heading-2026-150002694.html" target="_blank" rel="noopener">2026 housing starts forecast: 1.5M units, +8&ndash;9% over 2025</a></h3>
-      <p>Lower rates and the persistent housing shortage are nudging single-family starts higher and lifting expected lumber demand 4&ndash;8% annually, even as multifamily continues to do the heavier lifting in the mix.</p>
-      <span class="src">Yahoo Finance</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://www.nahb.org/blog/2026/01/building-material-price-growth" target="_blank" rel="noopener">NAHB: building-material price growth still elevated in a sluggish market</a></h3>
-      <p>Builders continue to absorb above-trend input cost increases even as activity cools, squeezing margins on the next wave of starts. Tariff exposure keeps Canadian-sourced inputs front-of-mind.</p>
-      <span class="src">NAHB</span>
-    </article>
-
-    <article class="story">
-      <h3><a href="https://www.lumbercapital.com/post/lumber-prices-in-2026-what-builders-and-homeowners-need-to-know-now" target="_blank" rel="noopener">Sawmill capacity stays tight, capping the supply response</a></h3>
-      <p>U.S. sawmill utilization has trended lower since 2017, leaving little room to absorb tariff-driven demand shifts. Builders should plan for continued upward price pressure into Q3.</p>
-      <span class="src">Lumber Capital</span>
-    </article>
-  </section>
-
-  <div class="footer">
-    Refreshed automatically each morning at 6:00 a.m. CT.<br>
+<article class="story"><h3><a href="https://www.constructiondive.com/news/construction-safety-week-osha-alliance/819531/" rel="noopener" target="_blank">Construction Safety Week signs new OSHA alliance at DC event</a></h3><p>About 1,000 construction pros gathered on the National Mall Wednesday as part of Safety Week to show they were &amp;ldquo;All in Together.&amp;rdquo;</p><span class="src">Construction Dive</span></article><article class="story"><h3><a href="https://www.constructiondive.com/news/jacobs-earnings-may-2026-data-center-investment-cycle/819518/" rel="noopener" target="_blank">Data center investment cycle ‘still in early stages’: Jacobs CEO</a></h3><p>The Dallas-based company&amp;rsquo;s data center business grew by more than 100% in the second quarter, according to a Tuesday earnings call.</p><span class="src">Construction Dive</span></article><article class="story"><h3><a href="https://www.constructiondive.com/news/ai-safety-skanska-turner-balfour-beatty/819491/" rel="noopener" target="_blank">How 3 builders are using AI for safety</a></h3><p>Skanska, Turner and Balfour Beatty have leveraged artificial intelligence for training, situational analysis and preventing serious injuries on roadwork jobsites.</p><span class="src">Construction Dive</span></article><article class="story"><h3><a href="https://www.enr.com/articles/62956-skanska-jv-wins-106b-mbta-contract-for-boston-rail-bridge-replacement" rel="noopener" target="_blank">Skanska JV Wins $1.06B MBTA Contract for Boston Rail Bridge Replacement</a></h3><p>Skanska’s $1.06-billion MBTA award will replace aging rail bridges at Boston’s North Station while keeping commuter and Amtrak service running.</p><span class="src">ENR</span></article><article class="story"><h3><a href="https://www.enr.com/articles/62949-turner-tapped-to-build-500m-westcourt-orlando-mixed-use-district" rel="noopener" target="_blank">Turner Tapped to Build $500M Westcourt Orlando Mixed-Use District</a></h3><p>Turner’s selection as general contractor pushes Orlando’s long-delayed Westcourt district toward execution, with hotel, office, entertainment and residential work now advancing.</p><span class="src">ENR</span></article></section>
+<div class="footer">
+    Refreshed automatically each morning at 6:00 a.m. CT.<br/>
     Tap the Reload button in the header for an on-demand update.
   </div>
-
 </div>
 </body>
 </html>
